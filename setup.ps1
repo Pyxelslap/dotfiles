@@ -1,4 +1,6 @@
+$home = $env:USERPROFILE
 $homeconfig = $env:LOCALAPPDATA
+$appdata = $env:APPDATA
 
 Remove-Item alias:curl
 
@@ -8,6 +10,6 @@ If ([bool](([System.Security.Principal.WindowsIdentity]::GetCurrent()).groups -m
 	iex "& {$(irm get.scoop.sh)}"
 }
 
-scoop install neovim adb scrcpy curl git
+scoop install neovim adb scrcpy curl git concfg
 
 New-Item -ItemType SymbolicLink -Path "$env:LOCALAPPDATA\nvim" -Target ".\.config\nvim"

@@ -1,0 +1,2 @@
+./all/nvim←$homeconfig/nvim←config
+./all/glow←$homeconfig/glow
