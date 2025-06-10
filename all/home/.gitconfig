@@ -1,0 +1,14 @@
+[user]
+	email = examples@mail.com
+	name = Pyxelslap
+[http]
+	lowSpeedLimit = 10
+	lowSpeedTime = 9999
+	postBuffer = 524288000
+	version = HTTP/1.1
+	maxRequestBuffer = 524288000
+[core]
+	compression = 0
+[safe]
+	directory = /storage/emulated/999
+	directory = /storage/emulated/999/store
