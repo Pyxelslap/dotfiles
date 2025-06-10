@@ -9,6 +9,8 @@
 	maxRequestBuffer = 524288000
 [core]
 	compression = 0
+[credential]
+	helper = store
 [safe]
 	directory = /storage/emulated/999
 	directory = /storage/emulated/999/store
