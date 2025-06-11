@@ -6,12 +6,10 @@ $appdata = $env:APPDATA
 
 Remove-Item alias:curl
 
-iex "& {$(irm get.scoop.sh)} -RunAsAdmin"
-
 scoop bucket add extras
-scoop install neovim adb scrcpy curl git concfg
+scoop install neovim adb scrcpy curl concfg
 
-New-Item -ItemType SymbolicLink -Path "$env:LOCALAPPDATA\nvim" -Target ".all\config\nvim"
+New-Item -ItemType SymbolicLink -Path "$env:LOCALAPPDATA\nvim" -Target ".\all\config\nvim"
 
 Get-Content "./all/symlink.txt" | ForEach-Object {
     $parts = $_ -split "←", 2
