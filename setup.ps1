@@ -7,7 +7,7 @@ $appdata = $env:APPDATA
 Remove-Item alias:curl
 
 scoop bucket add extras
-scoop install neovim adb scrcpy curl concfg
+scoop install neovim adb scrcpy curl concfg lazygit ripgrep gdu
 
 New-Item -ItemType SymbolicLink -Path "$env:LOCALAPPDATA\nvim" -Target ".\all\config\nvim"
 

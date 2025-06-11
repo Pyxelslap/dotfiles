@@ -1,7 +1,7 @@
 ## Install
 
-Open powershell as administrator and run this command
+After installing scoop, then open Powershell as administrator and run this command
 
 ```
-Set-ExecutionPolicy Bypass -Scope Process -Force; .\setup.ps1
+scoop install git; Set-ExecutionPolicy Bypass -Scope Process -Force; .\setup.ps1
 ```
