@@ -10,7 +10,10 @@ return {
 		opts = {
 			filesystem = {
 				window = {
-					position = "float"
+					position = "float",
+					mappings = {
+						["Z"] = "expand_all_subnodes"
+					}
 				},
 				filtered_items = {
 					visible = false,
