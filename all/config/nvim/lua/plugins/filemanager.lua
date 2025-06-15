@@ -49,9 +49,9 @@ return {
 
 			vim.keymap.set("n", "<leader>fg",
 				":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>",
-				{ desc = "ripgrep" })
+				{ desc = "Telescope ripgrep" })
 			vim.keymap.set("n", "<leader>b", ":Telescope buffers<CR>", { desc = "Buffers" })
-			vim.keymap.set("n", "<leader>f", ":Telescope fd<CR>", { desc = "Find files" })
+			vim.keymap.set("n", "<leader>ff", ":Telescope fd<CR>", { desc = "Find files" })
 		end
 	}
 }
