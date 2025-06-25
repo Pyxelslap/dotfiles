@@ -10,7 +10,7 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("mason-lspconfig").setup({
-				ensured_installed = { "lua_ls", "ts_ls", "prettier" },
+				ensured_installed = { "lua_ls", "ts_ls", "prettier", "emmet-language-server" },
 				automatic_installation = true
 			})
 		end

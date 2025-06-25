@@ -22,6 +22,6 @@ vim.keymap.set('n', '<ScrollWheelUp>', 'k')
 vim.keymap.set('n', '<ScrollWheelDown>', 'j')
 vim.keymap.set('v', '<ScrollWheelUp>', 'k')
 vim.keymap.set('v', '<ScrollWheelDown>', 'j')
-vim.keymap.set("n", "<leader>cd", ":exec 'cd' . expand('%:p:h')<CR>", { silent = true, desc = "Change Neovim pwd" })
+vim.keymap.set("n", "<leader>cd", ":exec 'cd' . expand('%:p:h') | pwd<CR>", { silent = true, desc = "Change Neovim pwd" })
 
 require('config.lazy')

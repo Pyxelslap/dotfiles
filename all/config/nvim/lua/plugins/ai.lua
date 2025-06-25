@@ -23,6 +23,9 @@ return {
 					-- Change the default chat adapter
 					chat = {
 						adapter = "gemini",
+						opts = {
+							completion_provider = "cmp",
+						}
 					},
 					inline = {
 						adapter = "gemini",
