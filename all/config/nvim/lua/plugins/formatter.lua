@@ -12,6 +12,7 @@ return {
 					css = { "prettier" },
 					javascript = { "prettier" },
 					typescript = { 'prettier' },
+					json = { "prettier" },
 					yaml = { "prettier" },
 					yml = { "prettier" },
 					php = { "phpcbf" },

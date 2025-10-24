@@ -8,11 +8,20 @@ return {
 			"MunifTanjim/nui.nvim",
 		},
 		opts = {
+			sources = {
+				"filesystem",
+				"netman.ui.neo-tree",
+				"buffers",
+				"git_status"
+			},
+			source_selector = {
+				statusline = true
+			},
 			filesystem = {
 				window = {
-					position = "float",
+					position = "current",
 					mappings = {
-						["Z"] = "expand_all_subnodes"
+						["X"] = "expand_all_subnodes"
 					}
 				},
 				filtered_items = {
@@ -52,6 +61,12 @@ return {
 				{ desc = "Telescope ripgrep" })
 			vim.keymap.set("n", "<leader>b", ":Telescope buffers<CR>", { desc = "Buffers" })
 			vim.keymap.set("n", "<leader>ff", ":Telescope fd<CR>", { desc = "Find files" })
+		end
+	},
+	{
+		"miversen33/netman.nvim",
+		config = function()
+			require("netman")
 		end
 	}
 }

@@ -48,27 +48,47 @@ return {
 		event = 'VimEnter',
 		opts = {},
 		config = function()
-			require('dashboard').setup {
-				theme = 'hyper',
+			local headerlogo = require('../config/header_ascii_art')
+			local db = require('dashboard')
+			db.setup {
+				theme = 'doom',
 				config = {
+					header = headerlogo.impressed_anime_girl,
 					week_header = {
-						enable = true,
+						enable = false,
 					},
-					shortcut = {
-						{ desc = '󰊳 Update', group = '@property', action = 'Lazy update', key = 'u' },
+					center = {
 						{
-							icon = ' ',
-							icon_hl = '@variable',
-							desc = 'Files',
-							group = 'Label',
-							action = 'Telescope find_files',
-							key = 'f',
+							icon = 'פּ ',
+							desc = 'Open Neotree window',
+							desc_hl = 'String',
+							key = 't',
+							key_hl = 'Number',
+							action = 'Neotree filesystem current'
 						},
 						{
-							desc = 'NeoTree',
-							group = 'Label',
-							action = 'Neotree toggle filesystem reveal right',
-							key = 't'
+							icon = ' ',
+							desc = 'Find File',
+							desc_hl = 'String',
+							key = 'b',
+							key_hl = 'Number',
+							action = 'Telescope fd'
+						},
+						{
+							icon = 'ﮧ ',
+							desc = 'AI chatbox',
+							desc_hl = 'String',
+							key = 'ai',
+							key_hl = 'Number',
+							action = 'CodeCompanionChat'
+						},
+						{
+							icon = ' ',
+							desc = 'Exit Neovim',
+							desc_hl = 'String',
+							key = 'q',
+							key_hl = 'Number',
+							action = 'q!'
 						},
 					},
 				},
@@ -106,5 +126,14 @@ return {
 			"nvim-lua/plenary.nvim",
 			"nvim-telescope/telescope.nvim"
 		},
+		config = function()
+			require("cheatsheet").setup({
+				telescope_mappings = {
+					['<CR>'] = require('cheatsheet.telescope.actions').select_or_fill_commandline,
+					['<C-Y>'] = require('cheatsheet.telescope.actions').copy_cheat_value,
+					['<C-E>'] = require('cheatsheet.telescope.actions').edit_user_cheatsheet,
+				}
+			})
+		end
 	}
 }

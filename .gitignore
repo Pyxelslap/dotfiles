@@ -1,2 +1,4 @@
 test/*
 **/.env*
+all/config/vim/plugged
+all/config/vim/~

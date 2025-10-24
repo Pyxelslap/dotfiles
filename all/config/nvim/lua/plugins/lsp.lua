@@ -43,6 +43,7 @@ return {
 					'eruby',
 					'html',
 					'xml',
+					'tmpl',
 					'htmldjango',
 					'javascriptreact',
 					'less',
@@ -63,13 +64,6 @@ return {
 					showSuggestionsAsSnippets = false,
 					syntaxProfiles = {},
 					variables = {},
-				},
-			})
-			lspconfig.cssmodules_ls.setup({
-				capabilities = capabilities,
-				on_attach = custom_on_attach,
-				init_options = {
-					camelCase = 'dashes',
 				},
 			})
 			lspconfig.cssls.setup({
