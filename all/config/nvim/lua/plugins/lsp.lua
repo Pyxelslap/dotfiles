@@ -18,10 +18,14 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		config = function()
-			local lspconfig = require("lspconfig")
 			local capabilities = require('cmp_nvim_lsp').default_capabilities()
+			local lsp_list = { "lua_ls", "emmet_language_server", "bashls" }
 
-			lspconfig.lua_ls.setup({
+			for i, lsp in ipairs(lsp_list) do
+				vim.lsp.enable(lsp)
+			end
+			-- LSP Config
+			vim.lsp.config('lua_ls', {
 				capabilities = capabilities,
 				filetypes = { "lua" },
 				settings = {
@@ -33,11 +37,11 @@ return {
 					}
 				}
 			})
-			lspconfig.ts_ls.setup({
+			vim.lsp.config('ts_ls', {
 				capabilities = capabilities,
 				filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" }
 			})
-			lspconfig.emmet_language_server.setup({
+			vim.lsp.config('emmet_language_server', {
 				capabilities = capabilities,
 				filetypes = { 'css',
 					'eruby',
@@ -55,7 +59,7 @@ return {
 					'htmlangular',
 				},
 				init_options = {
-					includeLanguages = {},
+					includeLanguages = { 'xml' },
 					excludeLanguages = {},
 					extensionsPath = {},
 					preferences = {},
@@ -66,29 +70,26 @@ return {
 					variables = {},
 				},
 			})
-			lspconfig.cssls.setup({
+			vim.lsp.config('cssls', {
 				capabilities = capabilities,
 				filetypes = { "css", "scss", "less" },
 				init_options = {
 					provideFormatter = false
 				}
 			})
-			lspconfig.css_variables.setup({
-				capabilities = capabilities,
-				filetypes = { "css", "scss", "less" }
-			})
-			lspconfig.pyright.setup({
+			vim.lsp.config('pyright', {
 				capabilities = capabilities,
 				filetypes = { "python" }
 			})
-			lspconfig.intelephense.setup({
+			vim.lsp.config('intelephense', {
 				capabilities = capabilities,
 				filetypes = { "php" }
 			})
-			lspconfig.bashls.setup({
+			vim.lsp.config('bashls', {
 				capabilities = capabilities,
 				filetypes = { "sh" }
 			})
+
 			--
 			vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { desc = "Code Action" })
 			vim.keymap.set('n', '<leader>el', vim.diagnostic.setqflist, { desc = "Error list" })
