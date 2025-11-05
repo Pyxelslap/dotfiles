@@ -10,13 +10,15 @@ return {
 			local env = require('../config/env')
 			require('codecompanion').setup({
 				adapters = {
-					gemini = function()
-						return require("codecompanion.adapters").extend("gemini", {
-							env = {
-								api_key = env.gemini_key
-							},
-						})
-					end,
+					http = {
+						gemini = function()
+							return require("codecompanion.adapters").extend("gemini", {
+								env = {
+									api_key = env.gemini_key
+								},
+							})
+						end,
+					},
 				},
 				strategies = {
 					-- Change the default chat adapter
@@ -45,7 +47,7 @@ return {
 					send_code = true,
 
 					job_start_delay = 1500, -- Delay in milliseconds between cmd tools
-					submit_delay = 0,  -- Delay in milliseconds before auto-submitting the chat buffer
+					submit_delay = 0, -- Delay in milliseconds before auto-submitting the chat buffer
 				},
 				display = {
 					chat = {

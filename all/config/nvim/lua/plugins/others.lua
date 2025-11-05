@@ -72,7 +72,15 @@ return {
 							desc_hl = 'String',
 							key = 'b',
 							key_hl = 'Number',
-							action = 'Telescope fd'
+							action = 'lua require(\"telescope.builtin\").find_files({hidden = false, follow = true})'
+						},
+						{
+							icon = ' ',
+							desc = 'LazyGit',
+							desc_hl = 'String',
+							key = 'lg',
+							key_hl = 'Number',
+							action = 'LazyGit'
 						},
 						{
 							icon = 'ﮧ ',

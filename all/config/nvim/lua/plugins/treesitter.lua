@@ -5,8 +5,11 @@ return {
 		lazy = false,
 		build = ":TSUpdate",
 		config = function()
+			vim.wo.foldmethod = 'expr'
+			vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+			vim.wo.foldlevel = 3
 			require 'nvim-treesitter.configs'.setup {
-				ensure_installed = { "go", "php" },
+				ensure_installed = {},
 				sync_install = true,
 				auto_install = false,
 
