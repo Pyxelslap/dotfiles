@@ -3,6 +3,8 @@
 set -euo pipefail
 shopt -s nullglob
 
+source ./scripts/bash/log.sh
+
 # User Directories
 XDG_CONFIG_HOME="$HOME/.config"
 XDG_CACHE_HOME="$HOME/.cache"
@@ -20,20 +22,10 @@ fi
 XDG_DATA_DIRS="/usr/share"
 XDG_CONFIG_DIRS="/etc"
 
-# Colors
-RED="\033[38;5;9m"
-GREEN="\033[38;5;10m"
-YELLOW="\033[38;5;11m"
-GRAY="\033[38;5;15m"
-DEFAULTCOLOR="\033[0m"
-
-Log() {
-	printf "[$(date "+%Y-%m-%d %H:%M:%S %Z")] ${GRAY}$1\n${DEFAULTCOLOR}"
-}
 
 home_link() {
 	Log "${DEFAULTCOLOR}Make symlinks at \"$HOME\""
-	local PATH_ARRAY=("$PWD/HOME/"* "$PWD/HOME/".*) #BE CAREFUL! this shit return * when there's any files start with dot (if nullglob is disabled)
+	local PATH_ARRAY=("$PWD/HOME/"* "$PWD/HOME/".*) #BE CAREFUL! ts return * when there's any files start with dot (if nullglob is disabled)
 	for DIR in "${PATH_ARRAY[@]}"; do
 		local LINK_NAME=$(basename "$DIR")
 		if [ -e "$HOME/$LINK_NAME" ]; then
