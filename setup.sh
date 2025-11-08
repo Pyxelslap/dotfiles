@@ -1,6 +1,7 @@
 #!/bin/env bash
 
 set -euo pipefail
+shopt -s nullglob
 
 # User Directories
 XDG_CONFIG_HOME="$HOME/.config"
@@ -30,7 +31,26 @@ Log() {
 	printf "[$(date "+%Y-%m-%d %H:%M:%S %Z")] ${GRAY}$1\n${DEFAULTCOLOR}"
 }
 
+home_link() {
+	Log "${DEFAULTCOLOR}Make symlinks at \"$HOME\""
+	local PATH_ARRAY=("$PWD/HOME/"* "$PWD/HOME/".*) #BE CAREFUL! this shit return * when there's any files start with dot (if nullglob is disabled)
+	for DIR in "${PATH_ARRAY[@]}"; do
+		local LINK_NAME=$(basename "$DIR")
+		if [ -e "$HOME/$LINK_NAME" ]; then
+			Log "${RED}File exist, Could not create \"$LINK_NAME\" symlink"
+		else
+			local LNCMD=$(ln -s "$DIR" "$HOME" 2>&1)
+			if [ $? -eq 0 ]; then
+				Log "$DIR -> $HOME/$LINK_NAME"
+			else
+				Log "${RED}$LNCMD\nStatus code: $?"
+			fi
+		fi
+	done
+}
+
 config_home_link() {
+	Log "${DEFAULTCOLOR}Make symlinks at \"$XDG_CONFIG_HOME\""
 	local PATH_ARRAY=("$PWD/CONFIG_HOME/"*)
 	for DIR in "${PATH_ARRAY[@]}"; do
 		local LINK_NAME=$(basename "$DIR")
@@ -48,6 +68,7 @@ config_home_link() {
 }
 
 data_home_link() {
+	Log "${DEFAULTCOLOR}Make symlinks at \"$XDG_DATA_HOME\""
 	local PATH_ARRAY=("$PWD/DATA_HOME/"*)
 	for DIR in "${PATH_ARRAY[@]}"; do
 		local LINK_NAME=$(basename "$DIR")
@@ -65,4 +86,5 @@ data_home_link() {
 }
 
 # MAIN
+home_link
 config_home_link
