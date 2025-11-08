@@ -2,11 +2,9 @@
 	email = examples@mail.com
 	name = Pyxelslap
 [http]
-	lowSpeedLimit = 10
+	lowSpeedLimit = 5
 	lowSpeedTime = 9999
-	postBuffer = 524288000
 	version = HTTP/1.1
-	maxRequestBuffer = 524288000
 [core]
 	compression = 0
 [credential]
