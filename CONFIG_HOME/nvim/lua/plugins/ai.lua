@@ -7,7 +7,10 @@ return {
 		opts = {
 		},
 		config = function()
-			local env = require('../config/env')
+			local ok, env = pcall(require, '../config/env')
+			if not ok then
+				env = require("../config/env-example")
+			end
 			require('codecompanion').setup({
 				adapters = {
 					http = {
