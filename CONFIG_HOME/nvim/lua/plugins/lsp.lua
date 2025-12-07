@@ -89,10 +89,6 @@ return {
 				capabilities = capabilities,
 				filetypes = { "sh" }
 			})
-
-			--
-			vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { desc = "Code Action" })
-			vim.keymap.set('n', '<leader>el', vim.diagnostic.setqflist, { desc = "Error list" })
 		end
 	}
 }

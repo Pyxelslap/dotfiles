@@ -67,6 +67,14 @@ return {
 							action = 'Neotree filesystem current'
 						},
 						{
+							icon = 'פּ ',
+							desc = 'Last sessions',
+							desc_hl = 'String',
+							key = 's',
+							key_hl = 'Number',
+							action = 'lua require(\"persistence\").select()'
+						},
+						{
 							icon = ' ',
 							desc = 'Find File',
 							desc_hl = 'String',
@@ -143,5 +151,12 @@ return {
 				}
 			})
 		end
+	},
+	{
+		"folke/persistence.nvim",
+		event = "BufReadPre",
+		opts = {
+			-- add any custom options here
+		}
 	}
 }
