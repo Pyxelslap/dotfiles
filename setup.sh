@@ -4,24 +4,7 @@ set -euo pipefail
 shopt -s nullglob
 
 source ./scripts/bash/log.sh
-
-# User Directories
-XDG_CONFIG_HOME="$HOME/.config"
-XDG_CACHE_HOME="$HOME/.cache"
-XDG_DATA_HOME="$HOME/.local/share"
-XDG_STATE_HOME="$HOME/.local/state"
-XDG_RUNTIME_DIR=$(
-if [ -d /tmp ]; then
-	echo "/tmp"
-else
-	echo "$TMPDIR"
-fi
-)
-
-# System Directories
-XDG_DATA_DIRS="/usr/share"
-XDG_CONFIG_DIRS="/etc"
-
+source ./scripts/bash/XDG_Base_Directories.sh
 
 home_link() {
 	Log "${DEFAULTCOLOR}Make symlinks at \"$HOME\""
@@ -77,6 +60,64 @@ data_home_link() {
 	done
 }
 
+USAGE() {
+	echo "Usage: $0 [OPTIONS]"
+	echo ""
+	echo "Automatically install configuration for new machine"
+	echo ""
+	echo "Options:"
+	echo "  -h, --help	      Show this help message and exit"
+	echo "  -l, --no-install    Only configure symlinks"
+	echo ""
+	echo "Examples:"
+	echo "  $0 -l"
+	echo "  $0 --no-install"
+}
+
 # MAIN
-home_link
-config_home_link
+main() {
+	home_link
+	config_home_link
+}
+
+# FLAG
+OPTIONS="lh"
+LONGOPTIONS="no-install,help"
+
+PARSED_ARGS=$(getopt -o $OPTIONS --long $LONGOPTIONS -- "$@")
+if [ $? -ne 0 ]; then
+    echo "${RED}Error: Failed to parse options."
+    exit 1
+fi
+
+# Re-assign parsed arguments to positional parameters
+eval set -- "$PARSED_ARGS"
+
+# Run this if no options 
+if [ "$1" == "--" ]; then
+	main
+	bash ./scripts/bash/install.sh
+fi
+# Process parsed arguments
+while [ -n "$1" ]; do
+    case "$1" in
+        -l|--no-install)
+			  main
+            shift
+            ;;
+        -h|--help)
+			  USAGE
+				exit 0
+				shift
+            ;;
+        --)
+            shift # Shift past the -- separator
+            break # End of options
+            ;;
+        *)
+            echo "${RED}Internal error or unhandled option: $1"
+            exit 1
+            ;;
+    esac
+done
+

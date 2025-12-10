@@ -9,23 +9,20 @@ if [ -f /etc/os-release ]; then
         case "$ID" in
             ubuntu|debian)
                 Log "Detected Debian-based system: $PRETTY_NAME"
-                # Add Debian/Ubuntu specific commands here
+					 source ./distros/universal.sh
+					 installnvim
                 ;;
             fedora|centos|rhel)
                 Log "Detected RHEL-based system: $PRETTY_NAME"
-                # Add Fedora/CentOS/RHEL specific commands here
                 ;;
             arch)
                 Log "Detected Arch Linux: $PRETTY_NAME"
-                # Add Arch specific commands here
                 ;;
             alpine)
                 Log "Detected Alpine Linux: $PRETTY_NAME"
-                # Add Alpine specific commands here
                 ;;
             *)
                 Log "Detected other Linux distribution: $PRETTY_NAME (ID: $ID)"
-                # Add generic Linux commands here
                 ;;
         esac
     else
@@ -41,6 +38,12 @@ elif [ -f /etc/debian_version ]; then
     Log "Detected Debian-based system via /etc/debian_version."
 elif [ -f /etc/arch-release ]; then
     Log "Detected Arch Linux via /etc/arch-release."
+elif [ -n $OSTYPE ]; then
+	case "$OSTYPE" in
+		"linux-android")
+			Log "${GREEN}Detected Android"
+			;;
+	esac
 else
     Log "Could not determine Linux distribution."
 fi
