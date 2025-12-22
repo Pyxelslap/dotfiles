@@ -1,6 +1,6 @@
 #!/bin/env bash
 
-source ./log.sh
+source ./scripts/bash/log.sh
 # cat ../../profiles/bash.txt >> $HOME/.bashrc
 
 if [ -f /etc/os-release ]; then

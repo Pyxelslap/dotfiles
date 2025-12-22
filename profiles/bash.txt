@@ -1,1 +1,5 @@
+# Dotfiles start
+
 eval "$(oh-my-posh init bash --config 'https://raw.githubusercontent.com/Pyxelslap/dotfiles/refs/heads/main/HOME/themes/oh-my-posh/.mytheme.posh.toml')"
+
+# Dotfiles end
