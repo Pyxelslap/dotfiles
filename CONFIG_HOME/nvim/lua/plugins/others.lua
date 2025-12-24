@@ -158,5 +158,20 @@ return {
 		opts = {
 			-- add any custom options here
 		}
+	},
+	{
+		"akinsho/toggleterm.nvim",
+		version = "*",
+		opts = {
+			size = function(term)
+				if term.direction == "vertical" then
+					return vim.o.columns * 0.4
+				elseif term.direction == "horizontal" then
+					return vim.o.lines * 0.3
+				else
+					return 20
+				end
+			end,
+		}
 	}
 }
