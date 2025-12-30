@@ -32,3 +32,14 @@ vim.keymap.set('n', '<leader>tj', ':ToggleTerm direction=horizontal<CR>',
 -- LSP
 vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { desc = "Code Action" })
 vim.keymap.set('n', '<leader>el', vim.diagnostic.setqflist, { desc = "Error list" })
+
+-- Formatter
+vim.keymap.set('n', '<leader>f', function()
+	require('conform').format({
+		lsp_fallback = true,
+		async = true,
+		timeout_ms = 1000,
+
+	})
+end, { desc = "Format this buffer" })
+vim.keymap.set('v', '<leader>f', ':Format<CR>', { silent = true, desc = "Range Formatting"})
