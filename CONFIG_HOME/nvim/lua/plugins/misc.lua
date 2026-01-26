@@ -10,8 +10,9 @@ return {
 		opts = {
 			filetypes = {
 				"*",
-				css = { css = true, rgb_fn = true, names = false },
-				html = { names = false }
+				css = { css = true, names = false },
+				xml = { rgb_fn = true, hsl_fn = true, names = false },
+				html = { rgb_fn = true, hsl_fn = true, names = false }
 			}
 		},
 	},
@@ -46,6 +47,7 @@ return {
 	{
 		'nvimdev/dashboard-nvim',
 		event = 'VimEnter',
+		priority = 727,
 		opts = {},
 		config = function()
 			local headerlogo = require('../config/header_ascii_art')
@@ -163,6 +165,9 @@ return {
 	{
 		"akinsho/toggleterm.nvim",
 		version = "*",
+		cmd = {
+			"ToggleTerm"
+		},
 		opts = {
 			size = function(term)
 				if term.direction == "vertical" then

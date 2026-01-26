@@ -4,7 +4,11 @@ return {
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 		},
-		opts = {
+		cmd = {
+			"CodeCompanion",
+			"CodeCompanionActions",
+			"CodeCompanionChat",
+			"CodeCompanionCmd"
 		},
 		config = function()
 			local ok, env = pcall(require, '../config/env')
