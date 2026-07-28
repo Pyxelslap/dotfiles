@@ -7,7 +7,7 @@ return {
 		config = function()
 			vim.wo.foldmethod = 'expr'
 			vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-			vim.wo.foldlevel = 3
+			vim.wo.foldlevel = 999
 			require 'nvim-treesitter.configs'.setup {
 				ensure_installed = {},
 				sync_install = true,

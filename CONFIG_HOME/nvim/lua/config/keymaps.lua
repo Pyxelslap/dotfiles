@@ -2,7 +2,7 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\" -- it's mean "\"
 vim.keymap.set('n', '<leader>n', ':nohlsearch<CR>', { desc = "Deselect search" })
-vim.keymap.set('t', '<leader><Esc>', [[<C-\><C-n>]], { desc = "Exit normal mode in terminal" })
+vim.keymap.set('t', '<leader><Esc>', [[<C-\><C-n>]], { desc = "Exit to normal mode in terminal" })
 vim.keymap.set("n", "<leader>.", ":exec 'cd ' . expand('%:p:h') | pwd<CR>",
 	{ silent = true, desc = "Change Neovim PWD" })
 

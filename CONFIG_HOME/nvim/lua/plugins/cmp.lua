@@ -11,13 +11,20 @@ return {
 		event = 'InsertEnter',
 		dependencies = {
 			"hrsh7th/cmp-path",
-			'hrsh7th/cmp-nvim-lsp'
+			'hrsh7th/cmp-nvim-lsp',
+			'hrsh7th/cmp-cmdline'
 		},
 		config = function()
 			local cmp = require 'cmp'
 			require("luasnip.loaders.from_vscode").lazy_load()
+			vim.opt.cot = { 'menu', 'menuone', 'noselect' }
 
 			cmp.setup({
+				view = {
+					entries = {
+						name = 'custom'
+					}
+				},
 				snippet = {
 					expand = function(args)
 						require('luasnip').lsp_expand(args.body)
@@ -46,14 +53,36 @@ return {
 		end
 	},
 	{
-		'gelguy/wilder.nvim',
-		config = function()
-			local wilder = require('wilder')
-			wilder.setup({ modes = { ':', '/', '?' } })
+		'hrsh7th/cmp-cmdline',
+		dependencies = {
+			'hrsh7th/cmp-buffer'
+		},
+		config = function ()
+			local cmp = require('cmp')
+			cmp.setup.cmdline('/', {
+				mapping = cmp.mapping.preset.cmdline(),
+				view = {
+					entries = { name = 'wildmenu', separator = ' | ' }
+				},
+				sources = {
+					{ name = 'buffer' }
+				}
+			})
 
-			wilder.set_option('renderer', wilder.popupmenu_renderer({
-				highlighter = wilder.basic_highlighter(),
-			}))
+			cmp.setup.cmdline(':', {
+				view = {
+					entries = {
+						name = 'custom'
+					}
+				},
+				mapping = cmp.mapping.preset.cmdline(),
+				sources = cmp.config.sources({
+					{ name = 'path' }
+				}, {
+					{ name = 'cmdline' }
+				}),
+				matching = { disallow_symbol_nonprefix_matching = false }
+			})
 		end
 	},
 }

@@ -1,6 +1,7 @@
 return {
 	{
 		"mfussenegger/nvim-dap",
+		enabled = false,
 		config = function()
 			local dap = require('dap')
 			-- dap.adapters.php = {
@@ -22,6 +23,7 @@ return {
 	},
 	{
 		"rcarriga/nvim-dap-ui",
+		enabled = false,
 		dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio", "jay-babu/mason-nvim-dap.nvim" },
 		config = function()
 			require('dapui').setup()
